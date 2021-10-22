@@ -44,7 +44,7 @@ def copy_file(name, new_name):
 def save_info(message):
     current_time = datetime.datetime.now()
     result = '{} - {}'.format(current_time, message)
-    with open('log.txt', 'a', encoding='utf-8') as f:
+    with open('new_f/log.txt', 'a', encoding='utf-8') as f:
         f.write(result + '\n')
 
 def change_dir(name):
