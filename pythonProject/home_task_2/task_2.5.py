@@ -1,5 +1,5 @@
 
-my_list = [7, 5, 3, 3, 2]
+rating = [7, 5, 3, 3, 2]
 
 
 def check_input(num):
@@ -11,8 +11,8 @@ def check_input(num):
 
 while True:
     try:
-        user_number = int(input("Please, enter your rating: "))
-        result = check_input(user_number)
+        user_rating = int(input("Please, enter your rating: "))
+        result = check_input(user_rating)
     except ValueError:
         print("Your rating is not a natural number. Try again. ")
         continue
@@ -20,9 +20,19 @@ while True:
         print("You enter not a number. ")
         continue
     else:
-        for el in my_list:
-            if my_list.count(el) > 1:
-
-
-
+        # c = rating.count(user_rating)
+        # for el in rating:
+        #     if c > 0:
+        #         i = rating.index(user_rating)
+        #         rating.insert(i + c, user_rating)
+        #         break
+        #     else:
+        #         if el < user_rating:
+        #             i = rating.index(el)
+        #             rating.insert(i, user_rating)
+        #             break
+        #         elif rating[-1] > user_rating:
+        #             rating.append(user_rating)
+        # print(rating)
+        pass
     break
