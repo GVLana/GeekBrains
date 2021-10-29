@@ -20,19 +20,18 @@ while True:
         print("You enter not a number. ")
         continue
     else:
-        # c = rating.count(user_rating)
-        # for el in rating:
-        #     if c > 0:
-        #         i = rating.index(user_rating)
-        #         rating.insert(i + c, user_rating)
-        #         break
-        #     else:
-        #         if el < user_rating:
-        #             i = rating.index(el)
-        #             rating.insert(i, user_rating)
-        #             break
-        #         elif rating[-1] > user_rating:
-        #             rating.append(user_rating)
-        # print(rating)
-        pass
+        count_r = rating.count(user_rating)
+        for el in rating:
+            if count_r > 0:
+                ind = rating.index(user_rating)
+                rating.insert(ind + count_r, user_rating)
+                break
+            else:
+                if el < user_rating:
+                    ind = rating.index(el)
+                    rating.insert(ind, user_rating)
+                    break
+                elif rating[-1] > user_rating:
+                    rating.append(user_rating)
+        print(rating)
     break
