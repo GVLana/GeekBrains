@@ -25,8 +25,12 @@ SECRET_KEY = 'django-insecure-60)uvfqxni^6jy@qbt@6j_jdc4b00xxi4gwmnkd)6gwe6z$(sa
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+if DEBUG:
+    INTERNAL_IPS = [
+        '127.0.0.1'
+    ]
 
 # Application definition
 
@@ -39,10 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'crispy_forms',
+    'debug_toolbar',
     'social_django',
 
     'authapp',
     'mainapp',
+
 ]
 
 MIDDLEWARE = [
@@ -53,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'braniaclms.urls'
@@ -155,3 +162,65 @@ SOCIAL_AUTH_GITHUB_KEY = '0dc4d35caf1aa402569c'
 SOCIAL_AUTH_GITHUB_SECRET = '55f5b420d9b179ef0175f9fa7ad00d566c4113ff'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient'
+        }
+    }
+}
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+
+# EMAIL_HOST = ''
+# EMAIL_PORT = ''
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_USE_SSL = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = 'emails-tmp'
+
+LOG_FILE = BASE_DIR / "log" / "main_log.log"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "console": {
+            "format": "[%(asctime)s] %(levelname)s %(name)s (%(lineno)d) %(message)s"
+        },
+    },
+    "handlers": {
+        "file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": LOG_FILE,
+            "formatter": "console",
+        },
+        "console": {"class": "logging.StreamHandler", "formatter": "console"},
+    },
+    "loggers": {
+        "django": {"level": "INFO", "handlers": ["file", "console"]},
+    },
+}
+
+# LOGGING = {
+#     "version": 1,
+#     "disable_existing_loggers": False,
+#     "formatters": {
+#         "console": {
+#             "format": "[%(asctime)s] %(levelname)s %(name)s (%(lineno)d)%(message)s"
+#         },
+#     },
+#     "handlers": {
+#         "console": {"class": "logging.StreamHandler", "formatter": "console"},
+#     },
+#     "loggers": {
+#         "django": {"level": "INFO", "handlers": ["console"]},
+#     },
+# }
