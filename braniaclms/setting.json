@@ -1,0 +1,7 @@
+{
+  'python.testing.pytestArgs': [
+    "."
+  ],
+  'python.testing.unitestEnabled': false,
+  'python.testing.pytestEnabled': true
+}
