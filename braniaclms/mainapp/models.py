@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 
 
 NULLABLE = {'blank': True, 'null': True}
@@ -19,8 +20,8 @@ class News(models.Model):
         return f'{self.title}'
 
     class Meta:
-        verbose_name = 'новость'
-        verbose_name_plural = 'новости'
+        verbose_name = _("News")
+        verbose_name_plural = _("News")
 
     def delete(self, *args, **kwargs):
         self.deleted = True
@@ -41,8 +42,8 @@ class Course(models.Model):
         return f'{self.title}'
 
     class Meta:
-        verbose_name = 'курс'
-        verbose_name_plural = 'курсы'
+        verbose_name = _("Course")
+        verbose_name_plural = _("Courses")
 
     def delete(self, *args, **kwargs):
         self.deleted = True
@@ -64,8 +65,8 @@ class Lesson(models.Model):
         return f'#{self.num} {self.title}'
 
     class Meta:
-        verbose_name = 'урок'
-        verbose_name_plural = 'уроки'
+        verbose_name = _("Lesson")
+        verbose_name_plural = _("Lessons")
         ordering = ('course', 'num')
 
     def delete(self, *args, **kwargs):
